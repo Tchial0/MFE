@@ -1,4 +1,4 @@
-# MFE - Manix File Encriptor
+# MFE - Manix File Encriptor 
 - Manix File Encriptor(MFE) é um software de encriptação/desencriptação símples de ficheiros.
 - É totalmente escrito em C utilizando apenas a biblioteca padrão da linguagem.
 - Para gerar o executável basta executar o ficheiro *build.bat* 

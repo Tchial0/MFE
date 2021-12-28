@@ -1,7 +1,7 @@
 /* 
  * Manix File Encryptor (MFE)
- * ficheiro: libmfe.c
- * Descrição: biblioteca do MFE
+ * Ficheiro: libmfe.c
+ * Descricão: biblioteca do MFE
  */
 
 #include<fcntl.h>
@@ -18,7 +18,7 @@ int fexists(const char * fname){
 	return (fd > 0);
 }
 
-/* Retorna o tamango de um ficheiro */
+/* Retorna o tamanho de um ficheiro */
 fsize_t fbytes(const char * name){
     FILE * fp = fopen(name,"rb");
     if(fp == NULL) return 0;

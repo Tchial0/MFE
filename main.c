@@ -1,6 +1,6 @@
 /* 
  * Manix File Encryptor (MFE)
- * ficheiro: main.c
+ * Ficheiro: main.c
  * Descrição: ficheiro principal do projecto
  */
 
@@ -14,10 +14,11 @@
 
 
 int main(int argc, char * argv[]){
-        setlocale(LC_ALL,"Portuguese");
-	
+    setlocale(LC_ALL,"Portuguese");
+	printf("MFE [Versão 1.0]\n\n");
+
 	if(argc < 3) {
-		fprintf(stderr,"\nErro: apenas 2 argumentos são necessários!\n\n");
+		fprintf(stderr,"\nErro: apenas 2 argumentos são permitidos!\n\n");
 		return 1;
 	}
 	
@@ -38,7 +39,7 @@ int main(int argc, char * argv[]){
 	char const * const action = argv[2];
 	
 	if(!strcmp(action,"enc")){
-		printf("\n--- Encriptação de ficheiro (%s) --- \n",file_name);
+		printf("\n--- Encriptação do ficheiro (%s) --- \n",file_name);
 		if(is_mfe_file(file_name)) {
 			fprintf(stderr,"\nErro: O ficheiro %s já está encriptado!\n\n",file_name);
 			return 1;
@@ -51,7 +52,7 @@ int main(int argc, char * argv[]){
 			return 1;
 		}
 	} else if(!strcmp(action,"dec")){
-		printf("\n--- Desencriptação de ficheiro (%s) --- \n",file_name);
+		printf("\n--- Desencriptação do ficheiro (%s) --- \n",file_name);
 		if(!is_mfe_file(file_name)) {
 			fprintf(stderr,"\nErro: O ficheiro %s não está encriptado!\n\n",file_name);
 			return 1;
@@ -60,7 +61,7 @@ int main(int argc, char * argv[]){
 		if(decrypt_file(file_name)){
 			printf("\nFicheiro desencriptado!\n\n");
 		} else {
-			fprintf(stderr,"\nErro: Falha ao desencriptar!\n\n");
+			fprintf(stderr,"\nErro: Falha ao desencriptar ficheiro!\n\n");
 			return 1;
 		}
 	}  else if(!strcmp(action,"inf")){
