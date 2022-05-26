@@ -1,7 +1,7 @@
 /* 
  * Manix File Encryptor (MFE)
  * Ficheiro: main.c
- * Descrição: ficheiro principal do projecto
+ * Description: main file
  */
 
 #include<string.h>
@@ -9,75 +9,74 @@
 #include<stdio.h>
 #include<time.h>
 #include<limits.h>
-#include<locale.h>
 #include "mfe.h"
 
 
 int main(int argc, char * argv[]){
-    setlocale(LC_ALL,"Portuguese");
-	printf("MFE [Versão 1.0]\n\n");
+
+	printf("MFE [Version 1.0]\n\n");
 
 	if(argc < 3) {
-		fprintf(stderr,"\nErro: apenas 2 argumentos são permitidos!\n\n");
+		fprintf(stderr,"\nError: only 2 arguments are allowed!\n\n");
 		return 1;
 	}
 	
 	char const * const file_name = argv[1];
 	if(!fexists(file_name)){
-		fprintf(stderr,"\nErro: O ficheiro %s não existe!\n\n",file_name);
+		fprintf(stderr,"\nError: the file %s doesn't exist!\n\n",file_name);
 		return 1;
 	}
 	fsize_t file_size =  fbytes(file_name);
 	if(file_size > MFE_MAX_FILE_SIZE) {
-		fprintf(stderr,"\nErro: O ficheiro %s é muito pesado!\n\n",file_name);
+		fprintf(stderr,"\nError: The file %s is so large!\n\n",file_name);
 		return 0;
 	} else if(file_size == 0){
-		fprintf(stderr,"\nErro: O ficheiro %s está vazio!\n\n",file_name);
+		fprintf(stderr,"\nError: The file %s is empty!\n\n",file_name);
 		return 0;
 	}
 	
 	char const * const action = argv[2];
 	
 	if(!strcmp(action,"enc")){
-		printf("\n--- Encriptação do ficheiro (%s) --- \n",file_name);
+		printf("\n--- File Encryption (%s) --- \n",file_name);
 		if(is_mfe_file(file_name)) {
-			fprintf(stderr,"\nErro: O ficheiro %s já está encriptado!\n\n",file_name);
+			fprintf(stderr,"\nError: The file %s is already encrypted!\n\n",file_name);
 			return 1;
 		}
 		
 		if(encrypt_file(file_name)){
-			printf("\nVersão encriptada: %s.mfe\n\n",ffname(file_name));
+			printf("\nEncrypted file: %s.mfe\n\n",ffname(file_name));
 		} else {
-			fprintf(stderr,"\nErro: Falha ao encriptar o ficheiro\n\n");
+			fprintf(stderr,"\nError: encryption failed.\n\n");
 			return 1;
 		}
 	} else if(!strcmp(action,"dec")){
-		printf("\n--- Desencriptação do ficheiro (%s) --- \n",file_name);
+		printf("\n--- File Decryption (%s) --- \n",file_name);
 		if(!is_mfe_file(file_name)) {
-			fprintf(stderr,"\nErro: O ficheiro %s não está encriptado!\n\n",file_name);
+			fprintf(stderr,"\nError: The file %s is not encrypted!\n\n",file_name);
 			return 1;
 		}
 		
 		if(decrypt_file(file_name)){
-			printf("\nFicheiro desencriptado!\n\n");
+			printf("\nFile decrypted!\n\n");
 		} else {
-			fprintf(stderr,"\nErro: Falha ao desencriptar ficheiro!\n\n");
+			fprintf(stderr,"\nError: failed to decrypt file!\n\n");
 			return 1;
 		}
 	}  else if(!strcmp(action,"inf")){
-		printf("\n--- Informações do ficheiro (%s) --- \n",file_name);
+		printf("\n--- File Informations (%s) --- \n",file_name);
 		if(!is_mfe_file(file_name)) {
-			fprintf(stderr,"\nErro: O ficheiro %s não está encriptado!\n\n",file_name);
+			fprintf(stderr,"\nError: The file %s is not encrypted!\n\n",file_name);
 			return 1;
 		}
 		
 		mfe_header * infs = mfe_inf(file_name);
-		printf("\nTamanho original: %ld\n",infs->fsize);
-		printf("\nNome original: %s\n",infs->fname);
-		printf("\nDara de encriptação: %s\n\n",ctime(&(infs->enc_time)));
+		printf("\nOriginal Size: %ld\n",infs->fsize);
+		printf("\nOriginal Name: %s\n",infs->fname);
+		printf("\nEncryption Date: %s\n\n",ctime(&(infs->enc_time)));
 		
 	} else {
-		fprintf(stderr,"\nErro: Argumento inválido (%s)\n",action);
+		fprintf(stderr,"\nError: invalid argument (%s)\n",action);
 		return 1;
 	}
 	printf("\n");
