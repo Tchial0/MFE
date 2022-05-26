@@ -1,7 +1,7 @@
 /* 
  * Manix File Encryptor (MFE)
- * Ficheiro: mfe.h
- * Descrição: neste ficheiro são definidas constantes necessárias e declaradas as funções da biblioteca mfe
+ * File: mfe.h
+ * Description: contains necessary constants and declarations of the finctions from de libmfe.c
  */
  
 #define MFE_FILE 222019
