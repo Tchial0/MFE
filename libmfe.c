@@ -1,7 +1,7 @@
 /* 
  * Manix File Encryptor (MFE)
- * Ficheiro: libmfe.c
- * Descricão: biblioteca do MFE
+ * File: libmfe.c
+ * Descricão: MFE library
  */
 
 #include<fcntl.h>
@@ -11,14 +11,14 @@
 #include<time.h>
 #include "mfe.h"
 
-/* Verifica a existência de um ficheiro */
+/* Check if a file exists*/
 int fexists(const char * fname){
 	int fd = open(fname,O_RDONLY);
 	close(fd);
 	return (fd > 0);
 }
 
-/* Retorna o tamanho de um ficheiro */
+/* Returns the size of a file*/
 fsize_t fbytes(const char * name){
     FILE * fp = fopen(name,"rb");
     if(fp == NULL) return 0;
@@ -30,7 +30,7 @@ fsize_t fbytes(const char * name){
 	return size;
 }
 
-/* Retorna o nome de um ficheiro sem seu caminho completo */
+/* Returns the name of the file without the full path */
 char * ffname(const char * name) {
 	char * new_name = (char *) calloc(strlen(name),sizeof(char));
 	strcpy(new_name,name);
@@ -39,7 +39,7 @@ char * ffname(const char * name) {
 	return (ptr+1);
 }
 
-/* Verifica se um ficheiro está encriptado */
+/* Verify whether a file is already encrypted*/
 int is_mfe_file(const char * name) {
 	fsize_t size = fbytes(name);
 	if(size < sizeof(mfe_header)) return 0;
@@ -50,7 +50,7 @@ int is_mfe_file(const char * name) {
     return ((infs.mfe_file == MFE_FILE) && (infs.encrypted_file == MFE_ENCRYPTED_FILE));
 }
 
-/* Retorna o cabeçalho de um ficheiro encriptado */
+/* Returns the header of an ecrypted file */
 mfe_header * mfe_inf(const char * fname){
 	if(!is_mfe_file(fname)) return NULL;
 	
@@ -61,7 +61,7 @@ mfe_header * mfe_inf(const char * fname){
     return infs;
 }
 
-/* Encripta um ficheiro */
+/* Encrypt a file */
 int encrypt_file(const char * fname) {
     fsize_t fsize = fbytes(fname);
     FILE * fori = fopen(fname,"rb");
@@ -96,7 +96,7 @@ int encrypt_file(const char * fname) {
 	
 }
 
-/* Desencripta um ficheiro */
+/* Decrypt a file*/
 int decrypt_file(const char * fname) {
 	
 	fsize_t fsize = fbytes(fname);
