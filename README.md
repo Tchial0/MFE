@@ -1,6 +1,4 @@
-# MFE - Manix File Encriptor 
-- Manix File Encriptor(MFE) é um software de encriptação/desencriptação símples de ficheiros.
-- É totalmente escrito em C utilizando apenas a biblioteca padrão da linguagem.
-- Para gerar o executável basta executar o ficheiro *build.bat* 
-
-**Para gerar o executável é necessário que um compilador C esteja instalado(de preferência gcc) e configurado nas variáveis do ambiente (windows)**
+# MFE - Manix File Encryptor
+- Manix File Encriptor(MFE) is a very simple file encryptor/decryptor program which uses an encryption created by myself.
+- It is completely written in C Language using the C Standard Library.
+- To generate de executable by yourself, simply run the file *build.bat* (Windows Only)
