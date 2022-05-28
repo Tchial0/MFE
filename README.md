@@ -8,7 +8,7 @@
 	<dt><pre>mfe &lt;file&gt; &lt;operation&gt;</pre></dt>
 	<dd>Where operation maybe:
 		<ul>
-			<li><b>enc</b> to encrypt the file specified by the argument 'file'</li>
+			<li><b>enc</b> to encrypt the file specified by the argument <code>file</code></li>
 			<li><b>dec</b> to decrypt the file (previously encrypted) specified by the argument <code>file</code></li>
 			<li><b>inf</b> to show informations about the encrypted file specified by the argument <code>file</code></li>
 		</ul>
