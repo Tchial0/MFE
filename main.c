@@ -16,7 +16,7 @@ int main(int argc, char * argv[]){
 
 	printf("MFE [Version 1.0]\n\n");
 
-	if(argc < 3) {
+	if(argc != 3) {
 		fprintf(stderr,"\nError: only 2 arguments are allowed!\n\n");
 		return 1;
 	}

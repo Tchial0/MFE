@@ -1,7 +1,7 @@
 /* 
  * Manix File Encryptor (MFE)
  * File: libmfe.c
- * Descricão: MFE library
+ * Description: MFE library
  */
 
 #include<fcntl.h>
